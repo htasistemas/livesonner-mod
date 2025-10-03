@@ -252,7 +252,15 @@ function livesonner_render_video(context_module $context): string {
 
     $output = '';
     foreach ($files as $file) {
-        $url = moodle_url::make_pluginfile_url($context->id, 'mod_livesonner', 'video', 0, $file->get_filepath(), $file->get_filename(), true);
+        $url = moodle_url::make_pluginfile_url(
+            $context->id,
+            'mod_livesonner',
+            'video',
+            0,
+            $file->get_filepath(),
+            $file->get_filename(),
+            false
+        );
         $output .= html_writer::tag('video', html_writer::tag('source', '', ['src' => $url, 'type' => $file->get_mimetype()]), [
             'class' => 'w-100 rounded shadow-sm',
             'controls' => 'controls',
